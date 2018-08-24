@@ -1,32 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>일빵빵 영어회화1</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  {{idx+1}}/{{words.length}}
+  <div class="idx">{{idx+1}}/{{words.length}}</div>
   <ion-card>
+    <ion-row text-center>
       <div class="word" [hidden]="meanFlag" (click)="toggleWord()">{{words[idx].word}}</div>
       <div class="word" [hidden]="!meanFlag" (click)="toggleWord()">{{words[idx].mean}}</div>
+    </ion-row>
 
-      <ion-row>
-          <ion-col>
-            <button ion-button icon-start clear small>
-              <ion-icon name="images"></ion-icon>
-              <div>이미지</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-start clear small>
-              <ion-icon name="volume-up"></ion-icon>
-              <div>사운드</div>
-            </button>
-          </ion-col>
-        </ion-row>
+    <ion-row>
+        <ion-col text-center>
+          <button ion-button icon-start clear small>
+            <ion-icon name="images"></ion-icon>
+            <div>이미지</div>
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button icon-start clear small>
+            <ion-icon name="volume-up"></ion-icon>
+            <div>사운드</div>
+          </button>
+        </ion-col>
+      </ion-row>
   </ion-card>
-  <button ion-button (click)="nextWord(true)">암기</button>
-  <button ion-button color="danger" (click)="nextWord(false)">미암기</button>
+  <div text-center>
+    <button ion-button (click)="nextWord(true)">암기</button>
+    <button ion-button color="danger" (click)="nextWord(false)">미암기</button>
+  </div>
 
 </ion-content>

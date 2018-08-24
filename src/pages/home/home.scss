@@ -1,5 +1,14 @@
 page-home {
     .word {
         font-size: 20px;
+        width: 100%;
+        height: 100px;
+    }
+    .idx {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    ion-card {
+        padding: 10px;
     }
 }

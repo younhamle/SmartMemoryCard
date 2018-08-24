@@ -23,6 +23,7 @@ export class HomePage {
     new Word("I don't wanna be single, okay? I just wanna be married again!", "난 싱글 원하지 않아, 알아? 난 단지 다시 결혼을 하고 싶다구."),
     new Word("And I just wanna be a millionaire!", "그럼… 난 백만장자가 되고 싶어!"),
   ];
+  title:string = '일빵빵 영어회화1';
   idx:number = 0;
   meanFlag:boolean;
   directionOfMemory:boolean = true;
