@@ -1,14 +1,32 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>일빵빵 영어회화1</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+  {{idx+1}}/{{words.length}}
+  <ion-card>
+      <div class="word" [hidden]="meanFlag" (click)="toggleWord()">{{words[idx].word}}</div>
+      <div class="word" [hidden]="!meanFlag" (click)="toggleWord()">{{words[idx].mean}}</div>
+
+      <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="images"></ion-icon>
+              <div>이미지</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="volume-up"></ion-icon>
+              <div>사운드</div>
+            </button>
+          </ion-col>
+        </ion-row>
+  </ion-card>
+  <button ion-button (click)="nextWord(true)">암기</button>
+  <button ion-button color="danger" (click)="nextWord(false)">미암기</button>
+
 </ion-content>
