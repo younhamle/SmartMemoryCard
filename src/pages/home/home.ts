@@ -1,11 +1,38 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
+  smartCard:SmartCard;
+
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+    this.smartCard = new SmartCard();
+    this.smartCard.alertCtrl = alertCtrl;
+  }
+}
+
+class Word {
+    word:string;
+    mean:string;
+    memorized:boolean = false;
+
+    constructor(word, mean) {
+      this.word = word;
+      this.mean = mean;
+    }
+
+    setMemorized(memorized) {
+      this.memorized = memorized;
+    }
+}
+
+class SmartCard {
+  title:string = '일빵빵 영어회화1';
   words:Word[] = [
     new Word("Hi", "안녕"),
     new Word("This guy says hello, I wanna kill myself.", "얘가 '안녕' 이럴 때, 난 죽고 싶더라."),
@@ -23,12 +50,12 @@ export class HomePage {
     new Word("I don't wanna be single, okay? I just wanna be married again!", "난 싱글 원하지 않아, 알아? 난 단지 다시 결혼을 하고 싶다구."),
     new Word("And I just wanna be a millionaire!", "그럼… 난 백만장자가 되고 싶어!"),
   ];
-  title:string = '일빵빵 영어회화1';
   idx:number = 0;
   meanFlag:boolean;
   directionOfMemory:boolean = true;
+  alertCtrl:AlertController;
 
-  constructor(public navCtrl: NavController) {
+  constructor() {
     this.meanFlag = this.directionOfMemory;
   }
 
@@ -39,6 +66,7 @@ export class HomePage {
     if(this.idx < this.words.length-1) {
       this.idx++;
     } else {
+      this.showResult();
       this.idx = 0;
     }
   }
@@ -46,19 +74,23 @@ export class HomePage {
   toggleWord() {
     this.meanFlag = this.meanFlag == true ? false : true;
   }
-}
 
-class Word {
-    word:string;
-    mean:string;
-    memorized:boolean = false;
+  showResult() {
+    const alert = this.alertCtrl.create({
+      title: 'Result!',
+      subTitle: '' + this.getCount() + '/' + this.words.length + ' complete!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
-    constructor(word, mean) {
-      this.word = word;
-      this.mean = mean;
+  getCount() {
+    let count = 0;
+    for (let word of this.words) {
+      if(word.memorized) {
+        count++;
+      }
     }
-
-    setMemorized(memorized) {
-      this.memorized = memorized;
-    }
+    return count;
+  }
 }
