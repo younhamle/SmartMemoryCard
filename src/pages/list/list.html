@@ -17,7 +17,7 @@
   <ion-list>
     <!--<ion-item *ngFor="let smartCard of smartCards;">-->
     <ion-item *ngFor="let smartCard of smartCards;">
-      <p>{{smartCard}}</p>
+      <p (click)="loadSmartCard()">{{smartCard}}</p>
       <!--<p>{{smartCard.title}}</p>-->
     </ion-item>
   </ion-list>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SmartCard } from '../home/home';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ListPage page.
@@ -47,6 +48,10 @@ export class ListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+  }
+
+  loadSmartCard() {
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
