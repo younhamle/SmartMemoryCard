@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 @Component({
@@ -10,8 +10,8 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
   smartCard:SmartCard;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-    this.smartCard = new SmartCard();
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams) {
+    this.smartCard = new SmartCard(navParams.get('id'), navParams.get('title'));
     this.smartCard.alertCtrl = alertCtrl;
   }
 }
@@ -30,8 +30,8 @@ class Word {
 }
 
 export class SmartCard {
-  id:number = 0;
-  title:string = '일빵빵 영어회화1';
+  id:number;
+  title:string;
   words:Word[] = [
     new Word(0, "Hi", "안녕"),
     new Word(1, "This guy says hello, I wanna kill myself.", "얘가 '안녕' 이럴 때, 난 죽고 싶더라."),
@@ -54,8 +54,10 @@ export class SmartCard {
   directionOfMemory:boolean = true;
   alertCtrl:AlertController;
 
-  constructor() {
+  constructor(id, title) {
     this.meanFlag = this.directionOfMemory;
+    this.id = id;
+    this.title = title;
   }
 
   nextWord(memorized) {
